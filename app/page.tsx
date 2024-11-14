@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { useState } from "react"
 
-export default function TransactionPage() {
+export default function Component() {
   const [isProfileOpen, setIsProfileOpen] = useState(false)
 
   const orderItems = [
@@ -80,7 +80,7 @@ export default function TransactionPage() {
         <div className="flex items-center justify-between mb-6">
           <div>
             <h1 className="text-2xl font-semibold mb-1">Order ID : ASFSSDF3425S</h1>
-            <p className="text-gray-500">Let's boost your sales with powerful insights and effective strategies today</p>
+            <p className="text-gray-500">Let&apos;s boost your sales with powerful insights and effective strategies today</p>
           </div>
           <div className="flex gap-2">
             <Button variant="outline">Send Invoice</Button>
