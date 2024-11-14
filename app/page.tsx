@@ -1,6 +1,6 @@
 'use client'
 
-import { Bell, ChevronDown, MoreHorizontal, Search, Command, User, LogOut } from 'lucide-react'
+import { Bell, ChevronDown, MoreHorizontal, Search, Command, User, LogOut, Menu } from 'lucide-react'
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -15,9 +15,10 @@ import { useState } from "react"
 
 export default function Component() {
   const [isProfileOpen, setIsProfileOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const orderItems = [
-    { name: "ITEM 1", color: "Black", size: "47", price: "449.000", image: "/photu.jpeg"},
+    { name: "ITEM 1", color: "Black", size: "42", price: "449.000", image: "/photu.jpeg"},
     { name: "Item 2", color: "Black", size: "XL", price: "439.000", image: "/window.svg" },
   ]
 
@@ -27,96 +28,101 @@ export default function Component() {
         <div className="flex items-center justify-between p-4">
           <div className="font-semibold">Transaction</div>
           <div className="flex items-center gap-4">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-              <Input
-                placeholder="Search"
-                className="w-[300px] pl-9 pr-12 bg-gray-100 border-0"
-              />
-              <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 text-xs text-gray-400">
-                <Command className="h-3 w-3" />
-                <span>K</span>
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden">
+              <Menu className="h-6 w-6" />
+            </button>
+            <div className={`${isMobileMenuOpen ? 'flex' : 'hidden'} md:flex items-center gap-4 flex-col md:flex-row absolute md:relative top-full right-0 left-0 bg-white md:bg-transparent p-4 md:p-0`}>
+              <div className="relative w-full md:w-auto">
+                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                <Input
+                  placeholder="Search"
+                  className="w-full md:w-[300px] pl-9 pr-12 bg-gray-100 border-0"
+                />
+                <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 text-xs text-gray-400">
+                  <Command className="h-3 w-3" />
+                  <span>K</span>
+                </div>
               </div>
-            </div>
-            <div className="relative bg-gray-100 rounded-lg p-2">
-              <Bell className="h-5 w-5" />
-              <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-green-500"></span>
-            </div>
-            <DropdownMenu open={isProfileOpen} onOpenChange={setIsProfileOpen}>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="rounded-lg border border-gray-600 text-gray-400 px-3 py-2">
-                  <div className="flex items-center gap-2">
-                    <Image
-                      src="/photu.jpeg"
-                      alt="User"
-                      width={20}
-                      height={20}
-                      className="rounded-full"
-                    />
-                    <div className="text-left">
-                      <div className="text-sm font-medium">Ranjesh_Roy</div>
-                      <div className="text-xs text-gray-500">Ranjeshroy978@gmail.com</div>
+              <div className="relative bg-gray-100 rounded-lg p-2">
+                <Bell className="h-5 w-5" />
+                <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-green-500"></span>
+              </div>
+              <DropdownMenu open={isProfileOpen} onOpenChange={setIsProfileOpen}>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="rounded-lg border border-gray-600 text-gray-400 px-3 py-2 w-full md:w-auto">
+                    <div className="flex items-center gap-2">
+                      <Image
+                        src="/photu.jpeg"
+                        alt="User"
+                        width={20}
+                        height={20}
+                        className="rounded-full"
+                      />
+                      <div className="text-left">
+                        <div className="text-sm font-medium">Ranjesh_Roy</div>
+                        <div className="text-xs text-gray-500">Ranjeshroy978@gmail.com</div>
+                      </div>
+                      <ChevronDown className="h-4 w-4 text-gray-500" />
                     </div>
-                    <ChevronDown className="h-4 w-4 text-gray-500" />
-                  </div>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56 bg-white" align="end">
-                <DropdownMenuItem className="flex items-center">
-                  <User className="mr-2 h-4 w-4" />
-                  <span>Profile</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="flex items-center">
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Log out</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56 bg-white" align="end">
+                  <DropdownMenuItem className="flex items-center">
+                    <User className="mr-2 h-4 w-4" />
+                    <span>Profile</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="flex items-center">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Log out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
           </div>
         </div>
       </header>
 
-      <div className="p-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="p-4 md:p-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
           <div>
-            <h1 className="text-2xl font-semibold mb-1">Order ID : ASFSSDF3425S</h1>
-            <p className="text-gray-500">Let&apos;s boost your sales with powerful insights and effective strategies today</p>
+            <h1 className="text-xl md:text-2xl font-semibold mb-1">Order ID : ASFSSDF3425S</h1>
+            <p className="text-gray-500 text-sm md:text-base">Let&apos;s boost your sales with powerful insights and effective strategies today</p>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline">Send Invoice</Button>
-            <Button className="bg-blue-200 hover:bg-orange-300">Contact Buyer</Button>
+            <Button variant="outline" className="text-sm">Send Invoice</Button>
+            <Button className="bg-blue-200 hover:bg-orange-300 text-sm">Contact Buyer</Button>
           </div>
         </div>
 
-        <div className="grid grid-cols-[1fr,300px] gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr,300px] gap-6">
           <div className="space-y-6">
-            <div className="bg-white rounded-lg p-6">
-              <div className="flex items-center justify-between mb-4">
-                <Badge variant="secondary" className="bg-orange-100 text-green-500 rounded-full px-3 py-1">With courier en route.</Badge>
-                <span className="text-gray-500 text-sm">No Resi : 34u2394y239y</span>
+            <div className="bg-white rounded-lg p-4 md:p-6">
+              <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                <Badge variant="secondary" className="bg-orange-100 text-green-500 rounded-full px-3 py-1 text-xs md:text-sm w-fit">With courier en route.</Badge>
+                <span className="text-gray-500 text-xs md:text-sm">No Resi : 34u2394y239y</span>
               </div>
-              <div className="grid grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
                   { title: "Order made", subtitle: "Create order", icon: "📦" },
                   { title: "Order Paid", subtitle: "Customer payment", icon: "💳" },
                   { title: "Shipped", subtitle: "On delivery", icon: "🚚" },
                   { title: "Completed", subtitle: "Order completed", icon: "✅" },
                 ].map((step, index) => (
-                  <div key={index} className={`flex items-start gap-2 p-4 rounded-lg ${index === 2 ? 'bg-orange-50' : 'bg-gray-50'} hover:shadow-md transition-shadow duration-200`}>
+                  <div key={index} className={`flex items-start gap-2 p-2 md:p-4 rounded-lg ${index === 2 ? 'bg-orange-50' : 'bg-gray-50'} hover:shadow-md transition-shadow duration-200`}>
                     <div className={`p-2 rounded-lg ${index === 2 ? 'bg-green-500 text-white' : 'bg-gray-200'}`}>
                       {step.icon}
                     </div>
                     <div className="min-w-0">
-                      <div className="font-medium truncate">{step.title}</div>
-                      <div className="text-sm text-gray-500 truncate">{step.subtitle}</div>
+                      <div className="font-medium truncate text-sm">{step.title}</div>
+                      <div className="text-xs md:text-sm text-gray-500 truncate">{step.subtitle}</div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-white rounded-lg p-6 space-y-6">
-              <div className="grid grid-cols-2 gap-6">
+            <div className="bg-white rounded-lg p-4 md:p-6 space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <div className="font-medium flex items-center justify-between">
                     Shipping Address (Seller)
@@ -166,7 +172,7 @@ export default function Component() {
                           <div className="text-sm text-gray-500">Color: {item.color} | Size: {item.size}</div>
                         </div>
                       </div>
-                      <div className="font-medium">1 X RP {item.price}</div>
+                      <div className="font-medium text-sm md:text-base">1 X RP {item.price}</div>
                     </div>
                   ))}
                 </div>
@@ -174,18 +180,18 @@ export default function Component() {
 
               <div className="rounded-lg border p-4">
                 <div className="font-medium mb-4">Order Summary</div>
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
+                <div className="space-y-2 text-sm md:text-base">
+                  <div className="flex justify-between">
                     <span className="text-gray-500">Product Price</span>
                     <span>2 Item</span>
                     <span>RP 888.000</span>
                   </div>
-                  <div className="flex justify-between text-sm">
+                  <div className="flex justify-between">
                     <span className="text-gray-500">Shipping Cost Subtotal</span>
                     <span>Shipping Discount</span>
                     <span>-RP67.500</span>
                   </div>
-                  <div className="flex justify-between text-sm">
+                  <div className="flex justify-between">
                     <span className="text-gray-500">Platform fees</span>
                     <span></span>
                     <span>-RP4.000</span>
@@ -221,11 +227,11 @@ export default function Component() {
                     {index !== 9 && <div className="absolute top-3 left-2.5 h-full w-0.5 bg-gray-200" />}
                   </div>
                   <div className="flex-grow">
-                    <div className="font-medium flex justify-between">
+                    <div className="font-medium flex justify-between text-sm md:text-base">
                       <span>{event.title}</span>
-                      {event.resi && <span className="text-gray-500 text-sm">{event.resi}</span>}
+                      {event.resi && <span className="text-gray-500 text-xs md:text-sm">{event.resi}</span>}
                     </div>
-                    <div className="text-sm text-gray-500">{event.date}</div>
+                    <div className="text-xs md:text-sm text-gray-500">{event.date}</div>
                   </div>
                 </div>
               ))}
