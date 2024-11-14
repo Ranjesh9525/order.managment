@@ -43,7 +43,7 @@ export function Sidebar() {
     <div className="w-72 bg-white border-r overflow-y-auto h-screen pr-6">
       <div className="p-4 border-b">
         <div className="flex items-center gap-2">
-          <div className="bg-red-500 text-white p-1 rounded">
+          <div className="bg-green-500 text-white p-1 rounded">
             <Package size={20} />
           </div>
           <span className="font-semibold">OPENSALES ®</span>
