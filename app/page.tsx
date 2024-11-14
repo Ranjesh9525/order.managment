@@ -17,7 +17,7 @@ export default function Component() {
   const [isProfileOpen, setIsProfileOpen] = useState(false)
 
   const orderItems = [
-    { name: "ITEM 1", color: "Black", size: "42", price: "449.000", image: "/photu.jpeg"},
+    { name: "ITEM 1", color: "Black", size: "47", price: "449.000", image: "/photu.jpeg"},
     { name: "Item 2", color: "Black", size: "XL", price: "439.000", image: "/window.svg" },
   ]
 
